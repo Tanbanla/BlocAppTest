@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app_pj5/data/date.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -87,19 +88,40 @@ class MainScreen extends StatelessWidget {
                 ),
                 borderRadius: BorderRadiusDirectional.circular(16),
                 boxShadow: [
-                  BoxShadow( blurRadius: 4, color: Colors.grey.shade300,offset: const Offset(5, 5))
-                ]
+                  BoxShadow(
+                    blurRadius: 4,
+                    color: Colors.grey.shade300,
+                    offset: const Offset(5, 5),
+                  ),
+                ],
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Toal Balance',style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),),
-                  Text('\$ 48000.00 ',style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 18,),
+                  Text(
+                    'Toal Balance',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    '\$ 48000.00 ',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 18),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 20,
+                    ),
                     child: Row(
-                      mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -112,15 +134,33 @@ class MainScreen extends StatelessWidget {
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
-                                child: Icon(Icons.arrow_downward, size: 12, color: Colors.white,),
+                                child: Icon(
+                                  Icons.arrow_downward,
+                                  size: 12,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                            const SizedBox(width: 8,),
+                            const SizedBox(width: 8),
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start, 
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Income',style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),),
-                                Text('\$25000',style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),),
+                                Text(
+                                  'Income',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  '\$25000',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -136,15 +176,33 @@ class MainScreen extends StatelessWidget {
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
-                                child: Icon(Icons.arrow_upward, size: 12, color: Colors.white,),
+                                child: Icon(
+                                  Icons.arrow_upward,
+                                  size: 12,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                            const SizedBox(width: 8,),
+                            const SizedBox(width: 8),
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start, 
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Expenses',style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),),
-                                Text('\$14000',style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),),
+                                Text(
+                                  'Expenses',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  '\$14000',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -155,18 +213,102 @@ class MainScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 12,),
+            SizedBox(height: 12),
             Row(
-              mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Transactions', style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),),
+                Text(
+                  'Transactions',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 GestureDetector(
-                  onTap: () {
-                    
-                  },
-                  child: Text('View All', style: TextStyle(fontSize: 12, color: Colors.grey[500], fontWeight: FontWeight.bold),)
+                  onTap: () {},
+                  child: Text(
+                    'View All',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey[500],
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: transactionsData.length,
+                itemBuilder: (context, int i) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: transactionsData[i]['color'],
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    Icon(transactionsData[i]['icon'])
+                                  ],
+                                ),
+                                SizedBox(width: 12),
+                                Text(
+                                  transactionsData[i]['name'],
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  transactionsData[i]['totalAmount'],
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  transactionsData[i]['date'],
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black26,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),

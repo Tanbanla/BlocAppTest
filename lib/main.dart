@@ -13,13 +13,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.light(
-          primary: const Color.fromARGB(255, 22, 104, 129),
+          primary: const Color.fromARGB(255, 144, 225, 250),
           secondary: const Color(0xFFE064F7),
           tertiary: const Color(0xFFFF8D6C),
           outline: Colors.grey,
         ),
       ),
-      home: Scaffold(body: LoginScreen()),
+      home: Scaffold(
+        backgroundColor: Colors.grey.shade300,
+        body: LoginScreen()),
     );
   }
 }
